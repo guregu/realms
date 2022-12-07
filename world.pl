@@ -19,13 +19,7 @@ spawn(Mob, RoomID) :-
 move(Thing, Direction) :-
 	location(Thing, RoomID),
 	room_exit(RoomID, Direction, Destination),
-	move_(Thing, Destination),
-	format("You head ~a.~n", [Direction]),
-	!.
-move(Thing, Direction) :-
-	location(Thing, RoomID),
-	\+room_exit(RoomID, Direction, _),
-	format("You can't go ~s.~n", [Direction]).
+	move_(Thing, Destination).
 
 move_(Thing, RoomID) :-
 	retract(location(Thing, _)),

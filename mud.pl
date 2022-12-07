@@ -3,6 +3,19 @@
 :- use_module(parser).
 :- use_module(world).
 
+direction(north).
+direction(east).
+direction(northeast).
+direction(northwest).
+direction(south).
+direction(southeast).
+direction(southwest).
+direction(west).
+direction(in).
+direction(out).
+direction(up).
+direction(down).
+
 % item_value(ItemID, Value).
 item_value(1, 5).
 item_value(2, 10).
@@ -128,6 +141,17 @@ room_exit(3, south, 2).
 room_exit(4, north, 5).
 room_exit(4, west, 3).
 room_exit(5, south, 4).
+
+room_exit_match(RoomID, Direction, Direction) :-
+	room_exit(RoomID, Direction, _).
+room_exit_match(RoomID, Shorthand, Direction) :-
+	\+room_exit(RoomID, Shorthand, _),
+	% fuzzy match the first character of a direction
+	atom_chars(Shorthand, [C|_]),
+	room_exit(RoomID, Direction, _),
+    % don't match weird custom directions
+    direction(Direction),
+	atom_chars(Direction, [C|_]).
 
 room_item(3, 9). % hammer
 
