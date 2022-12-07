@@ -1,6 +1,7 @@
 :- module(mud, [item/2, item_description/2, item_value/2, item_weight/2, item_element/2, item_rarity/2, item_power/2]).
 
-:- use_module(player).
+:- use_module(parser).
+:- use_module(world).
 
 % item_value(ItemID, Value).
 item_value(1, 5).
@@ -119,14 +120,14 @@ room_name(3, "Illuminated Corridor").
 room_name(4, "Luminous Hallway").
 room_name(5, "Chamber of the Heavens").
 
-room_exit(1, "east", 2).
-room_exit(2, "north", 3).
-room_exit(2, "west", 1).
-room_exit(3, "east", 4).
-room_exit(3, "south", 2).
-room_exit(4, "north", 5).
-room_exit(4, "west", 3).
-room_exit(5, "south", 4).
+room_exit(1, east, 2).
+room_exit(2, north, 3).
+room_exit(2, west, 1).
+room_exit(3, east, 4).
+room_exit(3, south, 2).
+room_exit(4, north, 5).
+room_exit(4, west, 3).
+room_exit(5, south, 4).
 
 room_item(3, 9). % hammer
 
